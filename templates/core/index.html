@@ -1,0 +1,206 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Programa de Renovación Vehicular - Secretaría de Movilidad{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid px-0">
+    <div class="d-flex justify-content-center mb-3">
+        <img src="{% static 'svg/cintillo_superior.svg' %}" class="">
+    </div>
+</div>
+<div class="container">
+    <section class="mb-5">
+        <h1 class="fw-bold text-center p-2 text-primary mb-3">
+            Programa de Renovación Vehicular "TAXI"
+        </h1>
+        <p class="text-center text-dark">
+            El Programa de Renovación Vehicular está dirigido a las personas concesionarias del servicio público de transporte individual tipo "TAXI" en el Estado de México, que tengan unidades con 10 o más años de antigüedad y que cumplan con los requisitos establecidos en la convocatoria y reglas de operación.
+        </p>
+    </section>
+</div>
+
+<!-- Documentos PDF -->
+<div class="container mb-5">
+
+    <div class="row text-center align-items-center justify-content-center">
+        
+        <div class="col-sm-6 col-md-2 p-0">
+            <a type="button" class="btn-pdf-modal" data-modal-type="convocatoria"
+                style="text-decoration: none; color: black; display: block;">
+                <div class="d-flex flex-column align-items-center">
+                    <img src="{% static 'img/PRV-TAXI_Boton-convocatoria.png' %}" style="width: 100px;"
+                        onerror="this.style.display='none'">
+                    <span class="mt-2 text-dark fw-bold">Convocatoria</span>
+                </div>
+            </a>
+        </div>
+        
+        <div class="col-1 p-0">
+            <img src="{% static 'img/PRV-TAXI_Icono-Flecha.png' %}" class="flecha" onerror="this.style.display='none'">
+        </div>
+        
+        <div class="col-sm-6 col-md-2 p-0">
+                <a type="button" class="btn-pdf-modal" data-modal-type="catalogo"
+                    style="text-decoration: none; color: black; display: block;">
+                    <div class="d-flex flex-column align-items-center">
+                        <img src="{% static 'img/PRV-TAXI_Boton-Catalogo-04.png' %}" style="width: 100px;">
+                        <span class="mt-2 text-dark fw-bold">Catálogo de autos</span>
+                    </div>
+                </a>
+            </div>
+
+             <div class="col-1 p-0">
+            <img src="{% static 'img/PRV-TAXI_Icono-Flecha.png' %}" class="flecha" onerror="this.style.display='none'">
+        </div>
+        
+        <div class="col-sm-6 col-md-2 p-0">
+            <a type="button" class="btn-pdf-modal" data-modal-type="solicitud"
+                style="text-decoration: none; color: black; display: block;">
+                <div class="d-flex flex-column align-items-center">
+                    <img src="{% static 'img/PRV-TAXI_Boton-Solicitud.png' %}" style="width: 100px;"
+                        onerror="this.style.display='none'">
+                    <span class="mt-2 text-dark fw-bold">Solicitud</span>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-1 p-0">
+            <img src="{% static 'img/PRV-TAXI_Icono-Flecha.png' %}" class="flecha" onerror="this.style.display='none'">
+        </div>
+
+        <div class="col-xs-2 col-sm-3 col-md-2 p-0">
+            <a type="button" class="btn-pdf-modal" data-modal-type="carta"
+                style="text-decoration: none; color: black; display: block;">
+                <div class="d-flex flex-column align-items-center">
+                    <img src="{% static 'img/PRV-TAXI_Boton-Carta.png' %}" style="width: 100px;"
+                        onerror="this.style.display='none'">
+                    <span class="mt-2 text-dark fw-bold">Carta</span>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- Documentación y Registro -->
+<div class="container mb-5">
+    <div class="row">
+        <section>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card border border-danger-subtle">
+                        <div class="card-body">
+                            <div class="card-title d-flex justify-content-center">
+                                <img src="{% static 'svg/lista.svg' %}" class="mx-3" style="width: 30px;"
+                                    onerror="this.style.display='none'">
+                                <h4 class="fw-bold">Documentación Requerida</h4>
+                            </div>
+                            <hr class="border border-danger-subtle">
+                            <div class="d-flex justify-content-center">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">
+                                        <div class="d-flex align-items-center">
+                                            <img src="{% static 'svg/persona_fisica.svg' %}" class="img-icon-sm mx-3">
+                                            <a type="button"
+                                                class="btn-doc-modal text-decoration-none fw-bold text-info flex-grow-1"
+                                                data-modal-type="pfisica">
+                                                <h5 class="text-info mb-0 me-3">Para personas físicas</h5>
+                                            </a>
+                                        </div>
+                                    </li>
+
+                                    <li class="list-group-item">
+                                        <div class="d-flex align-items-center">
+                                            <img src="{% static 'svg/persona_moral.svg' %}" class="img-icon-sm mx-3">
+                                            <a type="button"
+                                                class="btn-doc-modal text-decoration-none fw-bold text-info flex-grow-1"
+                                                data-modal-type="pmorales">
+                                                <h5 class="text-info mb-0 me-3">Adicionales para personas morales</h5>
+                                            </a>
+                                        </div>
+                                    </li>
+
+                                    <li class="list-group-item">
+                                        <div class="d-flex align-items-center">
+                                            <img src="{% static 'svg/vehiculo.svg' %}" class="img-icon-sm mx-3">
+                                            <a type="button"
+                                                class="btn-doc-modal text-decoration-none fw-bold text-info flex-grow-1"
+                                                data-modal-type="vehiculo">
+                                                <h5 class="text-info mb-0 me-3">Del vehículo</h5>
+                                            </a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 p-5">
+
+                    <div class="card border-0 cintillo-container">
+                        <div class="card-body">
+                            <div class="text-center my-4">
+                                <h3 class="text-info fw-bold mb-3">Registro</h3>
+                                <a href="{% url 'accounts:registro' %}" class="btn btn-primary">
+                                    <span class="fw-bold fs-5 p-2">INICIO</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+<!-- Footer con login -->
+
+<div class="container-fluid px-0" style="background-image: url('/static/svg/cintillo_inferior.svg');">
+    <div class="text-center">
+        <p class="text-white m-3">¿Ya estás registrado?</p>
+        <a class="btn btn-primary" href="{% url 'accounts:login' %}">Entra aquí</a>
+    </div>
+</div>
+
+<!-- Modales -->
+<div class="modal fade modal-lg" id="ModalDocumentacion" tabindex="-1" aria-labelledby="ModalDocumentacionLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="text-center fw-bold" id="modalDocumentacionTitle"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="d-flex justify-content-center">
+                    <ul class="list-group" id="modalDocumentacionBody"></ul>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade modal-xl" id="ModalPDF" tabindex="-1" aria-labelledby="ModalPDFLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="text-center fw-bold" id="modalPDFTitle"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="d-flex justify-content-center">
+                    <div id="modalPDFBody" style="width: 100%;"></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

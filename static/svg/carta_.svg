@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Capa_27" data-name="Capa 27" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #a5748a;
+      }
+
+      .cls-1, .cls-2, .cls-3, .cls-4, .cls-5 {
+        stroke-width: 0px;
+      }
+
+      .cls-2 {
+        fill: #468189;
+      }
+
+      .cls-3 {
+        fill: #c193a6;
+      }
+
+      .cls-4 {
+        fill: #fff;
+      }
+
+      .cls-5 {
+        fill: #fff3c0;
+      }
+
+      .cls-6 {
+        font-family: Gotham-Medium, Gotham;
+        font-size: 32.17px;
+        font-weight: 500;
+      }
+    </style>
+  </defs>
+  <rect class="cls-4" width="400" height="400"/>
+  <rect class="cls-5" x="89.27" y="89.27" width="221.46" height="221.46" rx="37.84" ry="37.84"/>
+  <text class="cls-6" transform="translate(158.77 368.1)"><tspan x="0" y="0">Carta</tspan></text>
+  <g>
+    <polygon class="cls-1" points="280.15 223.89 119.85 223.89 200.26 152.29 280.15 223.89"/>
+    <g>
+      <rect class="cls-4" x="136.39" y="103.49" width="127.22" height="133.87"/>
+      <g>
+        <circle class="cls-3" cx="197.79" cy="188.22" r="22.59"/>
+        <polygon class="cls-2" points="198.38 202.74 181.27 189.2 187.37 181.49 197.19 189.26 221.04 162.37 228.4 168.89 198.38 202.74"/>
+      </g>
+      <rect class="cls-2" x="152.26" y="118.81" width="95.48" height="13.13"/>
+      <rect class="cls-2" x="152.26" y="140.59" width="95.48" height="6.56"/>
+    </g>
+    <rect class="cls-3" x="119.85" y="223.95" width="160.31" height="71.59"/>
+    <polygon class="cls-1" points="280.15 295.54 119.85 295.54 200.26 223.95 280.15 295.54"/>
+  </g>
+</svg>

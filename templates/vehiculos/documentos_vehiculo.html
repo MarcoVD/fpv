@@ -1,0 +1,226 @@
+{% extends 'base_dashboard.html' %}
+
+{% block title %}Documentos del Vehículo{% endblock %}
+
+{% block dashboard_content %}
+<div class="row">
+    <div class="col-12 text-center mb-3">
+        <h1 class="fw-bold">Documentos del Vehículo</h1>
+    </div>
+
+    <div class="col-md-8 offset-md-2">
+        <div class="card">
+            <div class="card-body">
+                <p class="h4 mb-4">Archivos Requeridos</p>
+                
+                <div class="alert alert-info">
+                    <strong>Nota:</strong> Los archivos deben ser en formato PDF, JPG o PNG y no superar los 5MB.
+                </div>
+                
+                <ul class="list-group mb-4">
+                    {% for tipo in tipos_documentos %}
+                    <li class="list-group-item" id="doc-{{ tipo.id }}">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <strong>{{ forloop.counter }}. {{ tipo.nombre }}</strong>
+                                {% if tipo.obligatorio %}
+                                <span class="badge bg-danger ms-2">Obligatorio</span>
+                                {% endif %}
+                                <br>
+                                <small class="text-muted" id="status-{{ tipo.id }}">Sin subir</small>
+                            </div>
+                            <button type="button" 
+                                    class="btn btn-sm btn-outline-primary btn-subir" 
+                                    data-tipo-id="{{ tipo.id }}"
+                                    data-tipo-nombre="{{ tipo.nombre }}">
+                                <span class="material-symbols-outlined">upload</span>
+                            </button>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+                
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="d-flex justify-content-between">
+                        <a href="{% url 'vehiculos:documentos_fisica' %}" class="btn btn-secondary">
+                            <ion-icon name="arrow-back-outline"></ion-icon> Atrás
+                        </a>
+                        <button type="submit" class="btn btn-success">
+                            FINALIZAR <ion-icon name="checkmark-circle-outline"></ion-icon>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal para subir archivos -->
+<div class="modal fade" id="modalSubir" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTitulo">Subir Documento</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="formSubirDocumento" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <input type="hidden" id="tipoDocumentoId" name="tipo_documento_id">
+                    <input type="hidden" id="categoria" name="categoria" value="vehiculo">
+                    
+                    <div class="mb-3">
+                        <label for="archivo" class="form-label">Seleccionar archivo:</label>
+                        <input type="file" 
+                               class="form-control" 
+                               id="archivo" 
+                               name="archivo"
+                               accept=".pdf,.jpg,.jpeg,.png"
+                               required>
+                        <small class="text-muted d-block mt-2">
+                            Formatos: PDF, JPG, PNG | Tamaño máximo: 5MB
+                        </small>
+                    </div>
+                    
+                    <div id="previewContainer" class="mb-3" style="display:none;">
+                        <label class="form-label">Vista previa:</label>
+                        <img id="imagePreview" src="" alt="Preview" class="img-fluid rounded" style="max-height: 200px;">
+                    </div>
+
+                    <div id="mensajeError" class="alert alert-danger d-none" role="alert"></div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" id="btnGuardarDocumento">
+                    <span class="spinner-border spinner-border-sm d-none me-2" id="spinnerGuardar"></span>
+                    Guardar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+let modalSubir;
+let currentTipoId;
+
+document.addEventListener('DOMContentLoaded', function() {
+    modalSubir = new bootstrap.Modal(document.getElementById('modalSubir'));
+    
+    // Abrir modal
+    document.querySelectorAll('.btn-subir').forEach(btn => {
+        btn.addEventListener('click', function() {
+            currentTipoId = this.dataset.tipoId;
+            const tipoNombre = this.dataset.tipoNombre;
+            
+            document.getElementById('modalTitulo').textContent = `Subir: ${tipoNombre}`;
+            document.getElementById('tipoDocumentoId').value = currentTipoId;
+            document.getElementById('formSubirDocumento').reset();
+            document.getElementById('previewContainer').style.display = 'none';
+            document.getElementById('mensajeError').classList.add('d-none');
+            
+            modalSubir.show();
+        });
+    });
+    
+    // Preview de imagen
+    document.getElementById('archivo').addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        if (file && file.type.startsWith('image/')) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                document.getElementById('imagePreview').src = e.target.result;
+                document.getElementById('previewContainer').style.display = 'block';
+            };
+            reader.readAsDataURL(file);
+        } else {
+            document.getElementById('previewContainer').style.display = 'none';
+        }
+    });
+    
+    // Guardar documento - PETICIÓN AJAX REAL
+    document.getElementById('btnGuardarDocumento').addEventListener('click', function() {
+        const archivo = document.getElementById('archivo').files[0];
+        const tipoDocumentoId = document.getElementById('tipoDocumentoId').value;
+        const categoria = document.getElementById('categoria').value;
+        
+        if (!archivo) {
+            mostrarError('Por favor selecciona un archivo');
+            return;
+        }
+        
+        // Validar tamaño
+        if (archivo.size > 5 * 1024 * 1024) {
+            mostrarError('El archivo no debe superar los 5MB');
+            return;
+        }
+        
+        // Crear FormData
+        const formData = new FormData();
+        formData.append('tipo_documento_id', tipoDocumentoId);
+        formData.append('categoria', categoria);
+        formData.append('archivo', archivo);
+        formData.append('csrfmiddlewaretoken', document.querySelector('[name=csrfmiddlewaretoken]').value);
+        
+        // Mostrar spinner
+        const spinner = document.getElementById('spinnerGuardar');
+        const btnGuardar = document.getElementById('btnGuardarDocumento');
+        spinner.classList.remove('d-none');
+        btnGuardar.disabled = true;
+        
+        // Enviar AJAX
+        fetch('{% url "vehiculos:subir_documento" %}', {
+            method: 'POST',
+            body: formData,
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // Marcar como subido
+                const statusElement = document.getElementById(`status-${currentTipoId}`);
+                statusElement.textContent = `✓ ${data.documento.nombre}`;
+                statusElement.classList.add('text-success', 'fw-bold');
+                
+                const btnSubir = document.querySelector(`[data-tipo-id="${currentTipoId}"]`);
+                btnSubir.classList.remove('btn-outline-primary');
+                btnSubir.classList.add('btn-success');
+                btnSubir.innerHTML = '<span class="material-symbols-outlined">check_circle</span>';
+                
+                // Mostrar mensaje
+                mostrarExito(data.mensaje);
+                
+                // Cerrar modal
+                setTimeout(() => {
+                    modalSubir.hide();
+                }, 500);
+            } else {
+                mostrarError(data.error || 'Error al subir el documento');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            mostrarError('Error de conexión al subir el archivo');
+        })
+        .finally(() => {
+            spinner.classList.add('d-none');
+            btnGuardar.disabled = false;
+        });
+    });
+    
+    function mostrarError(mensaje) {
+        const alerta = document.getElementById('mensajeError');
+        alerta.textContent = mensaje;
+        alerta.classList.remove('d-none');
+    }
+    
+    function mostrarExito(mensaje) {
+        // Puedes usar una librería de notificaciones aquí
+        alert(mensaje);
+    }
+});
+</script>
+{% endblock %}

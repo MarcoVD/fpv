@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Capa_24" data-name="Capa 24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #b22a53;
+        stroke-width: 0px;
+      }
+    </style>
+  </defs>
+  <g>
+    <rect class="cls-1" x="85.41" y="57.46" width="314.59" height="42.52" rx="21.26" ry="21.26"/>
+    <rect class="cls-1" x="0" y="57.46" width="42.52" height="42.52" rx="21.26" ry="21.26"/>
+  </g>
+  <g>
+    <rect class="cls-1" x="85.41" y="138.31" width="314.59" height="42.52" rx="21.26" ry="21.26"/>
+    <rect class="cls-1" x="0" y="138.31" width="42.52" height="42.52" rx="21.26" ry="21.26"/>
+  </g>
+  <g>
+    <rect class="cls-1" x="85.41" y="219.17" width="314.59" height="42.52" rx="21.26" ry="21.26"/>
+    <rect class="cls-1" x="0" y="219.17" width="42.52" height="42.52" rx="21.26" ry="21.26"/>
+  </g>
+  <g>
+    <rect class="cls-1" x="85.41" y="300.02" width="314.59" height="42.52" rx="21.26" ry="21.26"/>
+    <rect class="cls-1" x="0" y="300.02" width="42.52" height="42.52" rx="21.26" ry="21.26"/>
+  </g>
+</svg>

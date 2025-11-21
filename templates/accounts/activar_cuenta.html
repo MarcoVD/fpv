@@ -1,0 +1,30 @@
+
+{% extends 'base_auth.html' %}
+
+{% block title %}Activar Cuenta - Secretaría de Movilidad{% endblock %}
+
+{% block auth_content %}
+<h5 class="card-title fw-bold">Activación de cuenta</h5>
+<hr>
+
+<form method="post">
+    {% csrf_token %}
+    
+    <div class="mb-3">
+        <label for="email" class="form-label">Correo Electrónico:</label>
+        <input type="email" class="form-control" id="email" name="email" required>
+    </div>
+    
+    <div class="mb-3">
+        <label for="token" class="form-label">Token:</label>
+        <input type="text" class="form-control" id="token" name="token" 
+               placeholder="Revisa tu correo electrónico" required>
+    </div>
+    
+    <button type="submit" class="btn btn-primary w-100">Activar</button>
+    
+    <div class="mt-3 text-center">
+        <small>¿Ya activaste tu cuenta? <a href="{% url 'accounts:login' %}">Inicia sesión</a></small>
+    </div>
+</form>
+{% endblock %}

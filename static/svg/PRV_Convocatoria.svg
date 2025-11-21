@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Capa_27" data-name="Capa 27" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #468189;
+      }
+
+      .cls-1, .cls-2, .cls-3, .cls-4, .cls-5 {
+        stroke-width: 0px;
+      }
+
+      .cls-6 {
+        letter-spacing: 0em;
+      }
+
+      .cls-2 {
+        fill: #c193a6;
+      }
+
+      .cls-7 {
+        letter-spacing: 0em;
+      }
+
+      .cls-3 {
+        fill: #fff;
+      }
+
+      .cls-8 {
+        letter-spacing: -.03em;
+      }
+
+      .cls-4 {
+        fill: #fff3c0;
+      }
+
+      .cls-9 {
+        font-family: Gotham-Medium, Gotham;
+        font-size: 32.17px;
+        font-weight: 500;
+      }
+
+      .cls-5 {
+        fill: #af7b93;
+      }
+
+      .cls-10 {
+        letter-spacing: -.01em;
+      }
+
+      .cls-11 {
+        letter-spacing: -.02em;
+      }
+    </style>
+  </defs>
+  <rect class="cls-3" width="400" height="400"/>
+  <text class="cls-9" transform="translate(92.26 368.1)"><tspan class="cls-7" x="0" y="0">C</tspan><tspan x="23.42" y="0">o</tspan><tspan class="cls-11" x="44.55" y="0">n</tspan><tspan class="cls-8" x="63.85" y="0">v</tspan><tspan x="82.03" y="0">oc</tspan><tspan class="cls-6" x="121.53" y="0">a</tspan><tspan class="cls-10" x="140.25" y="0">t</tspan><tspan x="152.99" y="0">oria</tspan></text>
+  <rect class="cls-4" x="89.27" y="89.27" width="221.46" height="221.46" rx="37.84" ry="37.84"/>
+  <g>
+    <rect class="cls-2" x="112.46" y="127.42" width="117.21" height="154.87" transform="translate(-30.7 30.16) rotate(-9.25)"/>
+    <rect class="cls-3" x="117.81" y="127.42" width="117.21" height="154.87"/>
+    <rect class="cls-2" x="135.6" y="144.49" width="81.64" height="10.27"/>
+    <g>
+      <rect class="cls-2" x="135.6" y="174.56" width="48.7" height="5.13"/>
+      <rect class="cls-2" x="135.6" y="186.53" width="48.7" height="5.13"/>
+      <rect class="cls-2" x="135.6" y="198.5" width="48.7" height="5.13"/>
+      <rect class="cls-2" x="135.6" y="210.47" width="48.7" height="5.13"/>
+    </g>
+    <g>
+      <g>
+        <g>
+          <polygon class="cls-1" points="270.31 249.56 236.44 224.26 236.44 187.54 270.31 162.25 270.31 249.56"/>
+          <g>
+            <rect class="cls-1" x="196.05" y="187.54" width="33.86" height="36.72"/>
+            <polygon class="cls-1" points="204.52 251.6 187.59 251.6 196.05 224.26 212.99 224.26 204.52 251.6"/>
+          </g>
+        </g>
+        <path class="cls-5" d="m276.08,220.14c3.74,0,6.78-6.4,6.78-14.3s-3.03-14.3-6.78-14.3v28.6Z"/>
+      </g>
+      <rect class="cls-5" x="288.78" y="205.28" width="16.37" height="2.59"/>
+      <rect class="cls-5" x="282.97" y="184.66" width="16.37" height="2.59" transform="translate(-53.8 204.71) rotate(-35.68)"/>
+      <rect class="cls-5" x="282.89" y="224.32" width="16.37" height="2.59" transform="translate(193.46 -129.49) rotate(36.85)"/>
+    </g>
+    <rect class="cls-2" x="135.6" y="258.51" width="48.7" height="5.13"/>
+  </g>
+</svg>

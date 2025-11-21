@@ -1,0 +1,101 @@
+{% extends 'base_dashboard.html' %}
+{% load static %}
+
+{% block title %}Registro Exitoso{% endblock %}
+
+{% block dashboard_content %}
+<div class="row">
+    <div class="col-12 text-center mb-5">
+        <span class="material-symbols-outlined text-success" style="font-size: 80px;">
+            check_circle
+        </span>
+        <h1 class="fw-bold text-success mt-3">¡Registro Exitoso!</h1>
+        <p class="text-muted">Su solicitud ha sido registrada en el Programa de Renovación Vehicular</p>
+    </div>
+    
+    <div class="col-md-8 offset-md-2">
+        <div class="card mb-4 border-success">
+            <div class="card-body text-center">
+                <h2 class="text-info mb-3">FOLIO:</h2>
+                <p class="display-6 text-info fw-bold border border-info rounded p-3">
+                    {{ folio }}
+                </p>
+                <small class="text-muted">Guarda este folio para dar seguimiento a tu solicitud</small>
+            </div>
+        </div>
+        
+        <div class="card mb-4">
+            <div class="card-body">
+                <h4 class="text-center text-info mb-3">Cédula de Registro</h4>
+                <p class="text-center text-muted mb-4">
+                    Se ha enviado una copia de tu cédula al correo electrónico registrado
+                </p>
+                
+                <div class="d-flex justify-content-center">
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" 
+                            data-bs-target="#modalCedula">
+                        <ion-icon name="document-text-outline" class="me-2"></ion-icon>
+                        Ver Cédula
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card bg-light">
+            <div class="card-body">
+                <h5 class="card-title">📋 Próximos pasos</h5>
+                <ol class="mb-0">
+                    <li>Revisa tu correo electrónico</li>
+                    <li>Espera la notificación de revisión (48-72 hrs hábiles)</li>
+                    <li>Da seguimiento con tu folio</li>
+                    <li>Acude a las instalaciones en caso de ser aprobado</li>
+                </ol>
+            </div>
+        </div>
+        
+        <div class="d-flex justify-content-center gap-3 mt-4">
+            <a href="{% url 'vehiculos:dashboard' %}" class="btn btn-outline-primary">
+                <ion-icon name="home-outline" class="me-2"></ion-icon>
+                Ir al Dashboard
+            </a>
+            <a href="{% url 'accounts:logout' %}" class="btn btn-outline-secondary">
+                <ion-icon name="exit-outline" class="me-2"></ion-icon>
+                Cerrar Sesión
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Cédula -->
+<div class="modal fade" id="modalCedula" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Cédula de Registro - {{ folio }}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="text-center p-4">
+                    <h4>Programa de Renovación Vehicular</h4>
+                    <h5 class="text-info">"Chalco - Santa Martha"</h5>
+                    <hr>
+                    <p><strong>Folio:</strong> {{ folio }}</p>
+                    <p><strong>Fecha de registro:</strong> {{ fecha|date:"d/m/Y H:i" }}</p>
+                    <p><strong>Usuario:</strong> {{ user.email }}</p>
+                    <hr>
+                    <p class="text-muted">
+                        Esta es una constancia de registro. Conserva este folio para cualquier aclaración.
+                    </p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" onclick="window.print()">
+                    <ion-icon name="print-outline" class="me-2"></ion-icon>
+                    Imprimir
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

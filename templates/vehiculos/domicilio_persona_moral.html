@@ -1,0 +1,82 @@
+{% extends 'base_dashboard.html' %}
+
+{% block title %}Domicilio Fiscal{% endblock %}
+
+{% block dashboard_content %}
+<div class="row">
+    <div class="col-12 text-center mb-3">
+        <h1 class="fw-bold">Datos Domicilio</h1>
+    </div>
+
+    <div class="col-md-6 offset-md-3">
+        <div class="card">
+            <div class="card-body">
+                <p class="h4 mb-4">Datos de Domicilio Fiscal</p>
+                
+                <form method="post">
+                    {% csrf_token %}
+                    
+                    <div class="mb-3">
+                        <label class="form-label" for="codigo_postal">Código Postal:</label>
+                        <input type="text" class="form-control" name="codigo_postal" 
+                               id="codigo_postal" maxlength="5" required>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label" for="estado">Estado:</label>
+                        <input type="text" class="form-control" name="estado" id="estado" 
+                               placeholder="Se llena automático con código postal" readonly>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label" for="municipio">Municipio:</label>
+                        <input type="text" class="form-control" name="municipio" id="municipio" 
+                               placeholder="Se llena automático con código postal" readonly>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label" for="colonia">Colonia o Localidad:</label>
+                        <select class="form-select" name="colonia" id="colonia" required>
+                            <option value="">-- Seleccione una opción --</option>
+                        </select>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label" for="calle">Calle y número:</label>
+                        <input type="text" class="form-control" id="calle" name="calle" 
+                               placeholder="Ej: Av. Principal 123" required>
+                    </div>
+                    
+                    <div class="d-flex gap-2">
+                        <a href="{% url 'vehiculos:persona_moral' %}" class="btn btn-secondary">
+                            <ion-icon name="arrow-back-outline"></ion-icon> Atrás
+                        </a>
+                        <button type="submit" class="btn btn-primary flex-grow-1">
+                            SIGUIENTE <ion-icon name="arrow-forward-outline"></ion-icon>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.getElementById('codigo_postal').addEventListener('blur', function() {
+    const cp = this.value;
+    if (cp.length === 5) {
+        document.getElementById('estado').value = 'Estado de México';
+        document.getElementById('municipio').value = 'Municipio Example';
+        
+        const selectColonia = document.getElementById('colonia');
+        selectColonia.innerHTML = `
+            <option value="">-- Seleccione una opción --</option>
+            <option value="Colonia Centro">Colonia Centro</option>
+            <option value="Colonia Norte">Colonia Norte</option>
+        `;
+    }
+});
+</script>
+{% endblock %}

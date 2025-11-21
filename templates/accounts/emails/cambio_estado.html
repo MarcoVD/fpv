@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solicitud Recibida</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            background-color: #0d6efd;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px 8px 0 0;
+        }
+        .content {
+            background-color: #f8f9fa;
+            padding: 30px;
+            border-radius: 0 0 8px 8px;
+        }
+        .folio-box {
+            background-color: #0d6efd;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        .folio-box h2 {
+            margin: 0;
+            font-size: 28px;
+            letter-spacing: 2px;
+        }
+        .info-box {
+            background-color: #e7f3ff;
+            padding: 15px;
+            border-left: 4px solid #0d6efd;
+            margin: 20px 0;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #6c757d;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Solicitud Recibida</h1>
+        <p>Programa de Renovación Vehicular</p>
+    </div>
+    
+    <div class="content">
+        <h2>¡Gracias {{ user.username }}!</h2>
+        
+        <p>Tu solicitud ha sido <strong>recibida exitosamente</strong> y está en proceso de revisión.</p>
+        
+        <div class="folio-box">
+            <p style="margin: 0; font-size: 14px;">Tu folio es:</p>
+            <h2>{{ solicitud.folio }}</h2>
+        </div>
+        
+        <div class="info-box">
+            <h3 style="margin-top: 0;">Información de tu solicitud:</h3>
+            <ul style="margin: 10px 0;">
+                <li><strong>Folio:</strong> {{ solicitud.folio }}</li>
+                <li><strong>Tipo:</strong> {{ solicitud.get_tipo_persona_display }}</li>
+                <li><strong>Clave de concesión:</strong> {{ solicitud.clave_concesion }}</li>
+                <li><strong>Fecha de envío:</strong> {{ solicitud.fecha_envio|date:"d/m/Y H:i" }}</li>
+                <li><strong>Estado:</strong> {{ solicitud.get_estado_display }}</li>
+            </ul>
+        </div>
+        
+        <h3>Próximos pasos:</h3>
+        <ol>
+            <li>Tu solicitud será revisada en un plazo de 48 a 72 horas hábiles</li>
+            <li>Recibirás un correo cuando cambie el estado de tu solicitud</li>
+            <li>Puedes consultar el estado en cualquier momento con tu folio</li>
+            <li>Si es aprobada, se te notificará para continuar el proceso</li>
+        </ol>
+        
+        <p><strong>Importante:</strong> Guarda este folio para cualquier consulta o seguimiento.</p>
+    </div>
+    
+    <div class="footer">
+        <p>Secretaría de Movilidad - Estado de México</p>
+        <p>Programa de Renovación Vehicular "TAXI"</p>
+        <p>Este es un correo automático, por favor no respondas a este mensaje.</p>
+    </div>
+</body>
+</html>

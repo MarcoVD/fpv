@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Capa_24" data-name="Capa 24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #468189;
+      }
+
+      .cls-1, .cls-2, .cls-3, .cls-4, .cls-5 {
+        stroke-width: 0px;
+      }
+
+      .cls-2 {
+        fill: #c193a6;
+      }
+
+      .cls-3 {
+        fill: #fff;
+      }
+
+      .cls-4 {
+        fill: #fff3c0;
+      }
+
+      .cls-5 {
+        fill: #af7b93;
+      }
+    </style>
+  </defs>
+  <rect class="cls-4" width="400" height="400" rx="68.35" ry="68.35"/>
+  <rect class="cls-2" x="41.89" y="68.91" width="211.71" height="279.73" transform="translate(-31.63 26.46) rotate(-9.25)"/>
+  <rect class="cls-3" x="51.55" y="68.91" width="211.71" height="279.73"/>
+  <rect class="cls-2" x="83.68" y="99.73" width="147.45" height="18.54"/>
+  <g>
+    <rect class="cls-2" x="83.68" y="154.04" width="87.97" height="9.27"/>
+    <rect class="cls-2" x="83.68" y="175.67" width="87.97" height="9.27"/>
+    <rect class="cls-2" x="83.68" y="197.29" width="87.97" height="9.27"/>
+    <rect class="cls-2" x="83.68" y="218.91" width="87.97" height="9.27"/>
+  </g>
+  <g>
+    <g>
+      <g>
+        <polygon class="cls-1" points="326.99 289.51 265.83 243.82 265.83 177.5 326.99 131.81 326.99 289.51"/>
+        <g>
+          <rect class="cls-1" x="192.87" y="177.5" width="61.16" height="66.32"/>
+          <polygon class="cls-1" points="208.16 293.2 177.58 293.2 192.87 243.82 223.45 243.82 208.16 293.2"/>
+        </g>
+      </g>
+      <path class="cls-5" d="m337.42,236.38c6.76,0,12.24-11.56,12.24-25.83s-5.48-25.83-12.24-25.83v51.65Z"/>
+    </g>
+    <rect class="cls-5" x="360.36" y="209.54" width="29.57" height="4.67"/>
+    <rect class="cls-5" x="349.85" y="172.29" width="29.57" height="4.67" transform="translate(-33.41 245.45) rotate(-35.68)"/>
+    <rect class="cls-5" x="349.71" y="243.93" width="29.57" height="4.67" transform="translate(220.51 -169.4) rotate(36.85)"/>
+  </g>
+  <rect class="cls-2" x="83.68" y="305.69" width="87.97" height="9.27"/>
+</svg>

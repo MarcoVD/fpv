@@ -1,0 +1,256 @@
+{% extends 'base_dashboard.html' %}
+
+{% block title %}Documentos Personales{% endblock %}
+
+{% block dashboard_content %}
+<div class="row">
+    <div class="col-12 text-center mb-3">
+        <h1 class="fw-bold">Documentos Personales</h1>
+    </div>
+
+    <div class="col-md-8 offset-md-2">
+        <div class="card">
+            <div class="card-body">
+                <p class="h4 mb-4">Archivos Requeridos</p>
+                
+                <div class="alert alert-info">
+                    <strong>Nota:</strong> Los archivos deben ser en formato PDF, JPG o PNG y no superar los 5MB.
+                </div>
+                
+                <ul class="list-group mb-4" id="listaDocumentos">
+                    {% for tipo in tipos_documentos %}
+                    <li class="list-group-item" id="doc-{{ tipo.id }}">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <strong>{{ forloop.counter }}. {{ tipo.nombre }}</strong>
+                                {% if tipo.obligatorio %}
+                                <span class="badge bg-danger ms-2">Obligatorio</span>
+                                {% endif %}
+                                <br>
+                                <small class="text-muted" id="status-{{ tipo.id }}">Sin subir</small>
+                            </div>
+                            <button type="button" 
+                                    class="btn btn-sm btn-outline-primary btn-subir" 
+                                    data-tipo-id="{{ tipo.id }}"
+                                    data-tipo-nombre="{{ tipo.nombre }}">
+                                <span class="material-symbols-outlined">upload</span>
+                            </button>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+                
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="d-flex justify-content-between">
+                        <a href="{% url 'vehiculos:vehiculo' %}" class="btn btn-secondary">
+                            <ion-icon name="arrow-back-outline"></ion-icon> Atrás
+                        </a>
+                        <button type="submit" class="btn btn-primary">
+                            SIGUIENTE <ion-icon name="arrow-forward-outline"></ion-icon>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal para subir archivos -->
+<div class="modal fade" id="modalSubir" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTitulo">Subir Documento</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="formSubirDocumento" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <input type="hidden" id="tipoDocumentoId" name="tipo_documento_id">
+                    <input type="hidden" id="categoria" name="categoria" value="personal">
+                    
+                    <div class="mb-3">
+                        <label for="archivo" class="form-label">Seleccionar archivo:</label>
+                        <input type="file" 
+                               class="form-control" 
+                               id="archivo" 
+                               name="archivo"
+                               accept=".pdf,.jpg,.jpeg,.png"
+                               required>
+                        <small class="text-muted d-block mt-2">
+                            Formatos: PDF, JPG, PNG | Tamaño máximo: 5MB
+                        </small>
+                    </div>
+                    
+                    <div id="previewContainer" class="mb-3" style="display:none;">
+                        <label class="form-label">Vista previa:</label>
+                        <img id="imagePreview" src="" alt="Preview" class="img-fluid rounded" style="max-height: 200px;">
+                    </div>
+                    
+                    <div id="errorContainer" class="alert alert-danger d-none"></div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" id="btnGuardarDocumento">
+                    <span class="spinner-border spinner-border-sm d-none" id="spinnerGuardar"></span>
+                    Guardar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+let modalSubir;
+let currentTipoId;
+const documentosSubidos = new Set();
+
+document.addEventListener('DOMContentLoaded', function() {
+    modalSubir = new bootstrap.Modal(document.getElementById('modalSubir'));
+    
+    // Cargar documentos ya subidos desde la sesión
+    cargarDocumentosSubidos();
+    
+    // Abrir modal al hacer clic en botón subir
+    document.querySelectorAll('.btn-subir').forEach(btn => {
+        btn.addEventListener('click', function() {
+            currentTipoId = this.dataset.tipoId;
+            const tipoNombre = this.dataset.tipoNombre;
+            
+            document.getElementById('modalTitulo').textContent = `Subir: ${tipoNombre}`;
+            document.getElementById('tipoDocumentoId').value = currentTipoId;
+            document.getElementById('formSubirDocumento').reset();
+            document.getElementById('previewContainer').style.display = 'none';
+            document.getElementById('errorContainer').classList.add('d-none');
+            
+            modalSubir.show();
+        });
+    });
+    
+    // Preview de imagen
+    document.getElementById('archivo').addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        if (file && file.type.startsWith('image/')) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                document.getElementById('imagePreview').src = e.target.result;
+                document.getElementById('previewContainer').style.display = 'block';
+            };
+            reader.readAsDataURL(file);
+        } else {
+            document.getElementById('previewContainer').style.display = 'none';
+        }
+    });
+    
+    // Guardar documento
+    document.getElementById('btnGuardarDocumento').addEventListener('click', function() {
+        subirDocumento();
+    });
+});
+
+function cargarDocumentosSubidos() {
+    // Aquí podrías cargar los documentos ya subidos desde el servidor
+    // Por ahora solo verificamos los que están en la sesión
+}
+
+function subirDocumento() {
+    const formData = new FormData(document.getElementById('formSubirDocumento'));
+    const archivo = document.getElementById('archivo').files[0];
+    
+    if (!archivo) {
+        mostrarError('Por favor selecciona un archivo');
+        return;
+    }
+    
+    // Validar tamaño (5MB)
+    if (archivo.size > 5 * 1024 * 1024) {
+        mostrarError('El archivo no debe superar los 5MB');
+        return;
+    }
+    
+    // Validar tipo
+    const tiposPermitidos = ['application/pdf', 'image/jpeg', 'image/jpg', 'image/png'];
+    if (!tiposPermitidos.includes(archivo.type)) {
+        mostrarError('Solo se permiten archivos PDF, JPG o PNG');
+        return;
+    }
+    
+    // Mostrar spinner
+    const spinner = document.getElementById('spinnerGuardar');
+    const btnGuardar = document.getElementById('btnGuardarDocumento');
+    spinner.classList.remove('d-none');
+    btnGuardar.disabled = true;
+    
+    // Enviar por AJAX
+    fetch('{% url "vehiculos:subir_documento" %}', {
+        method: 'POST',
+        body: formData,
+        headers: {
+            'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            // Marcar como subido
+            marcarComoSubido(currentTipoId, archivo.name);
+            documentosSubidos.add(currentTipoId);
+            
+            // Cerrar modal
+            modalSubir.hide();
+            
+            // Mostrar mensaje de éxito
+            mostrarAlerta('success', 'Documento guardado correctamente');
+        } else {
+            mostrarError(data.error || 'Error al subir el archivo');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        mostrarError('Error de conexión. Por favor intenta de nuevo.');
+    })
+    .finally(() => {
+        spinner.classList.add('d-none');
+        btnGuardar.disabled = false;
+    });
+}
+
+function marcarComoSubido(tipoId, nombreArchivo) {
+    const statusElement = document.getElementById(`status-${tipoId}`);
+    statusElement.textContent = `✓ ${nombreArchivo}`;
+    statusElement.classList.add('text-success', 'fw-bold');
+    
+    const btnSubir = document.querySelector(`[data-tipo-id="${tipoId}"]`);
+    btnSubir.classList.remove('btn-outline-primary');
+    btnSubir.classList.add('btn-success');
+    btnSubir.innerHTML = '<span class="material-symbols-outlined">check_circle</span>';
+}
+
+function mostrarError(mensaje) {
+    const errorContainer = document.getElementById('errorContainer');
+    errorContainer.textContent = mensaje;
+    errorContainer.classList.remove('d-none');
+}
+
+function mostrarAlerta(tipo, mensaje) {
+    // Crear alerta temporal
+    const alerta = document.createElement('div');
+    alerta.className = `alert alert-${tipo} alert-dismissible fade show`;
+    alerta.innerHTML = `
+        ${mensaje}
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    `;
+    
+    document.querySelector('.container').insertBefore(alerta, document.querySelector('.row'));
+    
+    // Auto-cerrar después de 3 segundos
+    setTimeout(() => {
+        alerta.remove();
+    }, 3000);
+}
+</script>
+{% endblock %}

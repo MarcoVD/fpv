@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Capa_24" data-name="Capa 24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #a5748a;
+      }
+
+      .cls-1, .cls-2, .cls-3, .cls-4, .cls-5 {
+        stroke-width: 0px;
+      }
+
+      .cls-2 {
+        fill: #468189;
+      }
+
+      .cls-3 {
+        fill: #c193a6;
+      }
+
+      .cls-4 {
+        fill: #fff;
+      }
+
+      .cls-5 {
+        fill: #fff3c0;
+      }
+    </style>
+  </defs>
+  <rect class="cls-5" x="0" width="400" height="400" rx="68.35" ry="68.35"/>
+  <g>
+    <polygon class="cls-1" points="344.78 243.14 55.22 243.14 200.47 113.83 344.78 243.14"/>
+    <g>
+      <rect class="cls-4" x="85.1" y="25.69" width="229.79" height="241.8"/>
+      <g>
+        <circle class="cls-3" cx="196.01" cy="178.72" r="40.8"/>
+        <polygon class="cls-2" points="197.08 204.96 166.17 180.5 177.2 166.57 194.93 180.6 238 132.02 251.29 143.81 197.08 204.96"/>
+      </g>
+      <rect class="cls-2" x="113.78" y="53.36" width="172.45" height="23.71"/>
+      <rect class="cls-2" x="113.78" y="92.69" width="172.45" height="11.86"/>
+    </g>
+    <rect class="cls-3" x="55.22" y="243.25" width="289.55" height="129.31"/>
+    <polygon class="cls-1" points="344.78 372.56 55.22 372.56 200.47 243.25 344.78 372.56"/>
+  </g>
+</svg>

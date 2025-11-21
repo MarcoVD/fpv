@@ -1,0 +1,98 @@
+{% extends 'base_dashboard.html' %}
+
+{% block title %}Datos del Vehículo{% endblock %}
+
+{% block dashboard_content %}
+<div class="row">
+    <div class="col-12 text-center mb-3">
+        <h1 class="fw-bold">Datos para Cédula</h1>
+    </div>
+
+    <div class="col-md-6 offset-md-3">
+        <div class="card">
+            <div class="card-body">
+                <p class="h4 mb-4">Datos del vehículo a solicitar</p>
+                
+                <form method="post" id="formVehiculo">
+                    {% csrf_token %}
+                    
+                    <div class="mb-3">
+                        <label class="form-label" for="marca">Marca:</label>
+                        <select class="form-select" id="marca" name="marca" required>
+                            <option value="">-- Seleccione una opción --</option>
+                            {% for marca in marcas %}
+                            <option value="{{ marca.id }}">{{ marca.marca }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label" for="tipo">Tipo:</label>
+                        <select class="form-select" id="tipo" name="tipo" required>
+                            <option value="">-- Primero seleccione una marca --</option>
+                        </select>
+                    </div>
+                    
+                    <div class="d-flex justify-content-between">
+                        <a href="#" class="btn btn-secondary" onclick="history.back(); return false;">
+                            <ion-icon name="arrow-back-outline"></ion-icon> Atrás
+                        </a>
+                        <button type="submit" class="btn btn-primary ">
+                            SIGUIENTE <ion-icon name="arrow-forward-outline"></ion-icon>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+// Cargar tipos de vehículo según la marca seleccionada
+document.getElementById('marca').addEventListener('change', function() {
+    const marcaId = this.value;
+    const selectTipo = document.getElementById('tipo');
+    
+    if (!marcaId) {
+        selectTipo.innerHTML = '<option value="">-- Primero seleccione una marca --</option>';
+        selectTipo.disabled = true;
+        return;
+    }
+    
+    // Mostrar loading
+    selectTipo.innerHTML = '<option value="">Cargando...</option>';
+    selectTipo.disabled = true;
+    
+    // Llamada AJAX
+    fetch(`{% url 'vehiculos:obtener_tipos_vehiculo' %}?marca_id=${marcaId}`)
+        .then(response => response.json())
+        .then(data => {
+            if (data.success && data.tipos.length > 0) {
+                selectTipo.innerHTML = '<option value="">-- Seleccione un tipo --</option>';
+                data.tipos.forEach(tipo => {
+                    const option = document.createElement('option');
+                    option.value = tipo.id;
+                    option.textContent = tipo.nombre;
+                    selectTipo.appendChild(option);
+                });
+                selectTipo.disabled = false;
+            } else {
+                selectTipo.innerHTML = '<option value="">No hay tipos disponibles</option>';
+                selectTipo.disabled = true;
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            selectTipo.innerHTML = '<option value="">Error al cargar tipos</option>';
+            selectTipo.disabled = true;
+        });
+});
+
+// Deshabilitar el select de tipo al cargar la página
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('tipo').disabled = true;
+});
+</script>
+{% endblock %}

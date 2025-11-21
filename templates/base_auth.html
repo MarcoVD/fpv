@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <section class="mb-5">
+        <h1 class="fw-bold text-center p-2 text-info mb-5">
+            Programa de Renovación Vehicular "TAXI"
+        </h1>
+    </section>
+</div>
+
+<div class="container">
+    <div class="row d-flex justify-content-center">
+        <div class="card" style="width: 22rem;">
+            <div class="card-body">
+                {% block auth_content %}{% endblock %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

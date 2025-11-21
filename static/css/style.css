@@ -1,0 +1,189 @@
+:root {
+    --primary: #9F2241;
+    --secondary: #bc955b;
+    --info: #651C32;
+    --light: #ffffff;
+    --grey: #efefef;
+    --yellow: #FFFF00;
+    --black: #3C3935;
+    --dark_grey: #4C5168;
+
+    --letramenuprincipal: #212529;
+    --letrablanca: #fff;
+    --fondomenu: #fff;
+    --colorboton: #8A2036;
+    --colorfooter: #56212f;
+    --letreroinicial: 17px;
+    --letrerofinal: 28px;
+    --marquesina: #9f2241;
+    --colorfinal: #4C5168;
+    --fondofooter: #F8F9FA;
+    --titulofooter: #0FA4DE;
+    --bordefooter: #DEE2E6;
+    --enlaceverde: #A4EB05;
+    --btndetalle: #A8A8A8;
+    --ultima: #E9ECEF;
+    --sombra1: rgba(0, 0, 0, 0.20);
+    --sombra2: rgba(0, 0, 0, 0.2);
+    --peso700: 700;
+    --linea-video: #E43883;
+    --titulo-pag: #706F6F;
+    --colordorado: #BC965C;
+    --colordependecias: #555073;
+    --colorubicacion: #ea4335;
+    --colorlink: #19a4dd;
+    --coloratencion: #6C6C6C;
+    --colbotonidentidad: #6E6F72;
+
+}
+
+.bg-primary {
+    background-color: var(--primary) !important;
+}
+
+.bg-info {
+    background-color: var(--info) !important;
+}
+
+.bg-grey {
+    background-color: var(--grey) !important;
+}
+
+.bg-light {
+    background-color: var(--light) !important;
+}
+
+.text-dark-grey {
+    color: var(--dark_grey);
+}
+
+.bg-mix {
+    background: linear-gradient(180deg, var(--light) 50%, var(--grey) 0);
+}
+
+
+
+.text-primary {
+    color: var(--primary) !important;
+
+}
+
+.text-secondary {
+    color: var(--secondary) !important;
+}
+
+.text-info {
+    color: var(--info) !important;
+}
+
+.text-dark {
+    color: var(--black);
+}
+
+.btn {
+    border: 0;
+}
+
+.btn-primary {
+    background-color: var(--primary);
+}
+
+.border-info {
+
+    border-color: var(--info) !important;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary);
+}
+
+.logo {
+    width: 370px;
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+@media (min-width: 1440px) {
+    .logo {
+        width: 672px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1439px) {
+    .logo {
+        width: 80%;
+    }
+}
+
+.img-icon-sm {
+    width: 50px;
+    height: auto;
+}
+
+@media (max-width: 576px) {
+    .img-icon-sm {
+        width: 15px;
+        height: auto;
+    }
+}
+
+#sidebar-container {
+    height: 100vh;
+    /* Opcional: Para evitar que el sidebar sea demasiado delgado en pantallas grandes */
+    min-width: 250px;
+    /* Opcional: Asegura que el contenido del sidebar si tiene scroll no tape la barra */
+    overflow-y: auto;
+}
+
+/* * Aseguramos que el contenedor principal (d-flex) también ocupe 100vh 
+        * para manejar correctamente el espacio vertical.
+        */
+.d-flex-full-height {
+    min-height: 100vh;
+}
+
+/* Estilo para los enlaces del menú */
+#sidebar-container .menu a {
+    padding: 10px 15px;
+    /* Ajuste de padding para mejor estética */
+    transition: background-color 0.2s;
+    text-decoration: none;
+}
+
+#sidebar-container .menu a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    /* Ligero hover effect */
+}
+
+/* Estilo para que el contenido principal ocupe el resto del espacio vertical */
+#content {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    /* Permite que el contenido principal crezca */
+}
+
+.cintillo-container {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    min-height: 120px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.flecha {
+    width: 25px;
+    margin: 5px;
+}
+
+@media (max-width: 560px) {
+    .flecha {
+        /* Gira la imagen -90 grados (90 grados antihorario) solo en móvil */
+        transform: rotate(-270deg);
+    }
+}

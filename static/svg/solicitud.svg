@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Capa_24" data-name="Capa 24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 400 400">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #a5748a;
+      }
+
+      .cls-1, .cls-2, .cls-3, .cls-4, .cls-5, .cls-6 {
+        stroke-width: 0px;
+      }
+
+      .cls-2 {
+        fill: #468189;
+      }
+
+      .cls-3 {
+        fill: none;
+      }
+
+      .cls-4 {
+        fill: #fff;
+      }
+
+      .cls-5 {
+        fill: #c17434;
+      }
+
+      .cls-7 {
+        clip-path: url(#clippath);
+      }
+
+      .cls-6 {
+        fill: #fff3c0;
+      }
+    </style>
+    <clipPath id="clippath">
+      <rect class="cls-3" width="400" height="400" rx="68.35" ry="68.35"/>
+    </clipPath>
+  </defs>
+  <rect class="cls-6" width="400" height="400" rx="68.35" ry="68.35"/>
+  <rect class="cls-3" width="400" height="400"/>
+  <g class="cls-7">
+    <g>
+      <rect class="cls-4" x="57.16" y="52.91" width="235.38" height="295.66" transform="translate(-55.93 68.03) rotate(-19.04)"/>
+      <rect class="cls-2" x="70.1" y="101.72" width="148.86" height="22.33" transform="translate(-28.92 53.33) rotate(-19.04)"/>
+      <rect class="cls-2" x="92.13" y="171.13" width="148.86" height="11.16" transform="translate(-48.54 64.01) rotate(-19.04)"/>
+      <rect class="cls-2" x="102.24" y="200.44" width="148.86" height="11.16" transform="translate(-57.55 68.92) rotate(-19.04)"/>
+      <rect class="cls-2" x="112.36" y="229.75" width="148.86" height="11.16" transform="translate(-66.56 73.82) rotate(-19.04)"/>
+      <rect class="cls-2" x="122.47" y="259.05" width="148.86" height="11.16" transform="translate(-75.57 78.73) rotate(-19.04)"/>
+      <rect class="cls-2" x="132.59" y="288.36" width="148.86" height="11.16" transform="translate(-84.58 83.63) rotate(-19.04)"/>
+    </g>
+    <path class="cls-5" d="m332.2,367.37l-9.28-26.88s-25.24-1-36.63-34.57c-3.81-11.24-10.89-21.08-20.53-28.01-12.38-8.89-27.53-20.31-29.9-24.52-4.1-7.29-3.11-25.05,14.65-24.05,10.59.59,32.54,10.49,48.55,18.38,6.9,3.4,14.45-3.27,11.94-10.54l-20.08-58.19s42.33,19.43,61.13,30.35c18.81,10.92,15.77,36.51,15.77,36.51l12.85,73.93,12.3,21.88-60.78,25.73Z"/>
+    <polygon class="cls-1" points="430.2 374.87 430.2 445.76 352.19 450.15 316.44 364.26 402.39 334.6 430.2 374.87"/>
+  </g>
+</svg>

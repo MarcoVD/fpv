@@ -1,0 +1,61 @@
+{% extends 'base_dashboard.html' %}
+
+{% block title %}Dashboard - Mis Registros{% endblock %}
+
+{% block dashboard_content %}
+<div class="row">
+    <div class="col-12 text-center mb-3">
+        <h1 class="fw-bold">Mis Registros</h1>
+        <hr>
+    </div>
+    
+    <div class="col-md-6 offset-md-3">
+        <!-- Solicitudes existentes -->
+        {% if solicitudes %}
+        <div class="card mb-4">
+            <div class="card-body">
+                <h4 class="card-title text-center mb-3">Solicitudes Registradas</h4>
+                <div class="list-group">
+                    {% for solicitud in solicitudes %}
+                    <div class="list-group-item">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h6 class="mb-1">Folio: <span class="text-primary fw-bold">{{ solicitud.folio }}</span></h6>
+                                <p class="mb-0 small text-muted">
+                                    Estado: 
+                                    <span class="badge 
+                                        {% if solicitud.estado == 'aprobada' %}bg-success
+                                        {% elif solicitud.estado == 'rechazada' %}bg-danger
+                                        {% elif solicitud.estado == 'revision' %}bg-warning
+                                        {% else %}bg-secondary{% endif %}">
+                                        {{ solicitud.get_estado_display }}
+                                    </span>
+                                </p>
+                                <p class="mb-0 small text-muted">Fecha: {{ solicitud.creado|date:"d/m/Y H:i" }}</p>
+                            </div>
+                            <!-- <div>
+                                <a href="#" class="btn btn-sm btn-outline-primary">Ver</a>
+                            </div> -->
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        
+        <!-- Nueva solicitud -->
+        <div class="card">
+            <div class="card-body">
+                <p class="h4 text-center mb-4">Nuevo Registro</p>
+                <div class="d-flex justify-content-center">
+                    <a href="{% url 'vehiculos:iniciar_proceso' %}" class="btn btn-primary btn-lg">
+                        <ion-icon name="add-circle-outline" class="me-2"></ion-icon>
+                        INICIAR
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Capa_27" data-name="Capa 27" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 400 400">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #a5748a;
+      }
+
+      .cls-1, .cls-2, .cls-3, .cls-4, .cls-5, .cls-6 {
+        stroke-width: 0px;
+      }
+
+      .cls-2 {
+        fill: #468189;
+      }
+
+      .cls-3 {
+        fill: none;
+      }
+
+      .cls-4 {
+        fill: #fff;
+      }
+
+      .cls-5 {
+        fill: #c17434;
+      }
+
+      .cls-7 {
+        clip-path: url(#clippath);
+      }
+
+      .cls-6 {
+        fill: #fff3c0;
+      }
+
+      .cls-8 {
+        font-family: Gotham-Medium, Gotham;
+        font-size: 32.17px;
+        font-weight: 500;
+      }
+    </style>
+    <clipPath id="clippath">
+      <rect class="cls-3" x="89.27" y="89.27" width="221.46" height="221.46" rx="37.84" ry="37.84"/>
+    </clipPath>
+  </defs>
+  <rect class="cls-4" width="400" height="400"/>
+  <text class="cls-8" transform="translate(127.02 368.1)"><tspan x="0" y="0">Solicitud</tspan></text>
+  <rect class="cls-6" x="89.27" y="89.27" width="221.46" height="221.46" rx="37.84" ry="37.84"/>
+  <rect class="cls-3" x="89.27" y="89.27" width="221.46" height="221.46"/>
+  <g class="cls-7">
+    <g>
+      <rect class="cls-4" x="120.92" y="118.57" width="130.32" height="163.69" transform="translate(-55.21 71.68) rotate(-19.04)"/>
+      <rect class="cls-2" x="128.08" y="145.59" width="82.42" height="12.36" transform="translate(-40.25 63.54) rotate(-19.04)"/>
+      <rect class="cls-2" x="140.28" y="184.02" width="82.42" height="6.18" transform="translate(-51.12 69.45) rotate(-19.04)"/>
+      <rect class="cls-2" x="145.88" y="200.24" width="82.42" height="6.18" transform="translate(-56.1 72.17) rotate(-19.04)"/>
+      <rect class="cls-2" x="151.48" y="216.47" width="82.42" height="6.18" transform="translate(-61.09 74.88) rotate(-19.04)"/>
+      <rect class="cls-2" x="157.08" y="232.7" width="82.42" height="6.18" transform="translate(-66.08 77.6) rotate(-19.04)"/>
+      <rect class="cls-2" x="162.68" y="248.92" width="82.42" height="6.18" transform="translate(-71.07 80.31) rotate(-19.04)"/>
+    </g>
+    <path class="cls-5" d="m273.19,292.66l-5.14-14.88s-13.97-.56-20.28-19.14c-2.11-6.22-6.03-11.67-11.37-15.51-6.85-4.92-15.24-11.24-16.55-13.58-2.27-4.04-1.72-13.87,8.11-13.32,5.86.33,18.02,5.81,26.88,10.18,3.82,1.88,8-1.81,6.61-5.84l-11.12-32.22s23.43,10.76,33.85,16.8c10.41,6.05,8.73,20.21,8.73,20.21l7.12,40.93,6.81,12.11-33.65,14.24Z"/>
+    <polygon class="cls-1" points="327.45 296.82 327.45 336.07 284.26 338.5 264.47 290.94 312.05 274.52 327.45 296.82"/>
+  </g>
+</svg>

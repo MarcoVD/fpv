@@ -1,0 +1,68 @@
+
+{% extends 'base_dashboard.html' %}
+
+{% block title %}Datos de la Concesión{% endblock %}
+
+{% block dashboard_content %}
+
+<div class="row">
+    <div class="col-12 text-center mb-3">
+        <h1 class="fw-bold">Datos de la Concesión</h1>
+    </div>
+
+    <div class="col-md-6 offset-md-3">
+        <div class="card">
+            <div class="card-body">
+                <p class="h4 mb-4">Datos del Título</p>
+                
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }}" role="alert">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
+                <form method="post">
+                    {% csrf_token %}
+                    
+                    <div class="mb-3">
+                        {{ form.concesion.label_tag }}
+                        {{ form.concesion }}
+                        {% if form.concesion.errors %}
+                            {% for error in form.concesion.errors %}
+                                <div class="text-danger small mt-1">{{ error }}</div>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                    
+                    <div class="mb-3">
+                        {{ form.municipio.label_tag }}
+                        {{ form.municipio }}
+                        {% for error in form.municipio.errors %}
+                            <div class="text-danger small mt-1">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label class="form-label d-block">{{ form.tipo_persona.label_tag }}</label>
+                        {% for radio in form.tipo_persona %}
+                            <div class="form-check">
+                                {{ radio.tag }}
+                                <label class="form-check-label" for="{{ radio.id_for_label }}">
+                                    {{ radio.choice_label }}
+                                </label>
+                            </div>
+                        {% endfor %}
+                        {% for error in form.tipo_persona.errors %}
+                            <div class="text-danger small mt-1">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+                    
+                    <button type="submit" class="d-flex justify-content-between btn btn-primary ">SIGUIENTE</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

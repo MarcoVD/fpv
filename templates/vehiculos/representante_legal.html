@@ -1,0 +1,88 @@
+{% extends 'base_dashboard.html' %}
+
+{% block title %}Representante Legal{% endblock %}
+
+{% block dashboard_content %}
+<div class="row">
+    <div class="col-12 text-center mb-3">
+        <h1 class="fw-bold">Datos de Representante Legal</h1>
+    </div>
+
+    <div class="col-md-8 offset-md-2">
+        <div class="card">
+            <div class="card-body">
+                <p class="h4 mb-4">Datos Personales del Representante</p>
+                
+                <form method="post">
+                    {% csrf_token %}
+                    
+                    <div class="row">
+                        <div class="col-md-12 mb-3">
+                            <label class="form-label" for="nombre">Nombre(s):</label>
+                            <input type="text" class="form-control" id="nombre" name="nombre" required>
+                        </div>
+                        
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label" for="primer_apellido">Primer Apellido:</label>
+                            <input type="text" class="form-control" id="primer_apellido" 
+                                   name="primer_apellido" required>
+                        </div>
+                        
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label" for="segundo_apellido">Segundo Apellido:</label>
+                            <input type="text" class="form-control" id="segundo_apellido" 
+                                   name="segundo_apellido">
+                        </div>
+                        
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label" for="rfc">RFC:</label>
+                            <input type="text" class="form-control" id="rfc" name="rfc" 
+                                   maxlength="13" required>
+                        </div>
+                        
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label" for="regimen_fiscal">Régimen Fiscal:</label>
+                            <input type="text" class="form-control" id="regimen_fiscal" 
+                                   name="regimen_fiscal" required>
+                        </div>
+                        
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label" for="sexo">Sexo:</label>
+                            <select class="form-select" id="sexo" name="sexo" required>
+                                <option value="">-- Seleccione --</option>
+                                <option value="M">Mujer</option>
+                                <option value="H">Hombre</option>
+                            </select>
+                        </div>
+                        
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label" for="fecha_nacimiento">Fecha de Nacimiento:</label>
+                            <input type="date" class="form-control" id="fecha_nacimiento" 
+                                   name="fecha_nacimiento" required>
+                        </div>
+                        
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label" for="telefono">Teléfono fijo:</label>
+                            <input type="tel" class="form-control" id="telefono" name="telefono">
+                        </div>
+                        
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label" for="movil">Teléfono móvil:</label>
+                            <input type="tel" class="form-control" id="movil" name="movil" required>
+                        </div>
+                    </div>
+                    
+                    <div class="d-flex gap-2">
+                        <a href="{% url 'vehiculos:domicilio_moral' %}" class="btn btn-secondary">
+                            <ion-icon name="arrow-back-outline"></ion-icon> Atrás
+                        </a>
+                        <button type="submit" class="btn btn-primary flex-grow-1">
+                            SIGUIENTE <ion-icon name="arrow-forward-outline"></ion-icon>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
