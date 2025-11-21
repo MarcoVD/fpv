@@ -1,71 +1,55 @@
-{% extends 'base_dashboard.html' %}
-{% block title %}Datos Personales{% endblock %}
-{% load crispy_forms_tags %}
-
-{% block dashboard_content %}
+{% extends 'base_dashboard.html' %} {% block title %}Datos Personales{% endblock
+%} {% load crispy_forms_tags %} {% block dashboard_content %}
 
 <div class="row">
-    <div class="col-12 text-center mb-3">
-        <h1 class="fw-bold">Datos Personales del Propietario</h1>
-    </div>
-    <div class="col-md-8 offset-md-2">
-        <div class="card">
-            <div class="card-body">
-                <p class="h4 mb-4">Datos de Persona Física</p>
-                <form method="post" novalidate>
-                    {% csrf_token %}
-                    <div class="row mb-3">
-                        <div class="col-md-4 ">
-                            {{ form.nombre|as_crispy_field }}
-                        </div>
-                        <div class="col-md-4 ">
-                            {{ form.primer_apellido|as_crispy_field }}
-                        </div>
-                        <div class="col-md-4 ">
-                            {{ form.segundo_apellido|as_crispy_field }}
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <div class="col-md-4">
-                            {{ form.curp|as_crispy_field }}
-                        </div>
-                        <div class="col-md-4">
-                            {{ form.rfc|as_crispy_field }}
-                        </div>
-                        <div class="col-md-4">
-                            {{ form.fecha_nacimiento|as_crispy_field }}
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <div class="col-md-6">
-                            {{ form.sexo|as_crispy_field }}
-                        </div>
-                        <div class="col-md-6">
-                            {{ form.regimen_fiscal|as_crispy_field }}
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <div class="col-md-6">
-                            {{ form.telefono|as_crispy_field }}
-                        </div>
-                        <div class="col-md-6">
-                            {{ form.movil|as_crispy_field }}
-                        </div>
-                    </div>
-                    
-                    <hr>
-                    <div class="d-flex justify-content-between">
-                        <a href="{% url 'vehiculos:dashboard' %}" class="btn btn-secondary">
-                            <ion-icon name="arrow-back-outline"></ion-icon> Atrás
-                        </a>
-                        <button type="submit" class="btn btn-primary">
-                            SIGUIENTE <ion-icon name="arrow-forward-outline"></ion-icon>
-                        </button>
-                    </div>
-                
-                </form>
+  <div class="col-12 text-center mb-3">
+    <h1 class="fw-bold">Datos Personales del Propietario</h1>
+  </div>
+  <div class="col-md-8 offset-md-2">
+    <div class="card">
+      <div class="card-body">
+        <p class="h4 mb-4">Datos de Persona Física</p>
+        <form method="post" novalidate>
+          {% csrf_token %}
+          <div class="row mb-3">
+            <div class="col-md-4">{{ form.nombre|as_crispy_field }}</div>
+            <div class="col-md-4">
+              {{ form.primer_apellido|as_crispy_field }}
             </div>
-        </div>
+            <div class="col-md-4">
+              {{ form.segundo_apellido|as_crispy_field }}
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-md-4">{{ form.curp|as_crispy_field }}</div>
+            <div class="col-md-4">{{ form.rfc|as_crispy_field }}</div>
+            <div class="col-md-4">
+              {{ form.fecha_nacimiento|as_crispy_field }}
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-md-6">{{ form.sexo|as_crispy_field }}</div>
+            <div class="col-md-6">
+              {{ form.regimen_fiscal|as_crispy_field }}
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-md-6">{{ form.telefono|as_crispy_field }}</div>
+            <div class="col-md-6">{{ form.movil|as_crispy_field }}</div>
+          </div>
+
+          <hr />
+          <div class="d-flex justify-content-between">
+            <a href="{% url 'vehiculos:dashboard' %}" class="btn btn-secondary">
+              <ion-icon name="arrow-back-outline"></ion-icon> Atrás
+            </a>
+            <button type="submit" class="btn btn-primary">
+              SIGUIENTE <ion-icon name="arrow-forward-outline"></ion-icon>
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
+  </div>
 </div>
 {% endblock dashboard_content %}

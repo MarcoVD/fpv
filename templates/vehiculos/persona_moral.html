@@ -1,51 +1,73 @@
 {% extends 'base_dashboard.html' %}
 
-{% block title %}Datos de Persona Moral{% endblock %}
+{% block title %}Datos de Persona Moral
+{% endblock %}
 
 {% block dashboard_content %}
 <div class="row">
-    <div class="col-12 text-center mb-3">
-        <h1 class="fw-bold">Datos de Titularidad</h1>
-    </div>
+  <div class="col-12 text-center mb-3">
+    <h1 class="fw-bold">Datos de Titularidad</h1>
+  </div>
 
-    <div class="col-md-6 offset-md-3">
-        <div class="card">
-            <div class="card-body">
-                <p class="h4 mb-4">Datos Razón Social</p>
-                
-                <form method="post">
-                    {% csrf_token %}
-                    
-                    <div class="mb-3">
-                        <label class="form-label" for="razon_social">Razón Social:</label>
-                        <input type="text" class="form-control" id="razon_social" 
-                               name="razon_social" required>
-                    </div>
-                    
-                    <div class="mb-3">
-                        <label class="form-label" for="rfc">RFC:</label>
-                        <input type="text" class="form-control" id="rfc" name="rfc" 
-                               maxlength="12" required>
-                        <small class="text-muted">12 caracteres para persona moral</small>
-                    </div>
-                    
-                    <div class="mb-3">
-                        <label class="form-label" for="regimen_fiscal">Régimen Fiscal:</label>
-                        <input type="text" class="form-control" id="regimen_fiscal" 
-                               name="regimen_fiscal" required>
-                    </div>
-                    
-                    <div class="d-flex gap-2">
-                        <a href="{% url 'vehiculos:titulo' %}" class="btn btn-secondary">
-                            <ion-icon name="arrow-back-outline"></ion-icon> Atrás
-                        </a>
-                        <button type="submit" class="btn btn-primary flex-grow-1">
-                            SIGUIENTE <ion-icon name="arrow-forward-outline"></ion-icon>
-                        </button>
-                    </div>
-                </form>
+  <div class="col-md-6 offset-md-3">
+    <div class="card">
+      <div class="card-body">
+        <p class="h4 mb-4">Datos Razón Social</p>
+
+        <form method="post">
+          {% csrf_token %}
+
+          <div class="mb-3">
+            <label class="form-label" for="{{ form.razon_social.id_for_label }}"
+              >{{ form.razon_social.label }}:</label
+            >
+            {{ form.razon_social }} {% if form.razon_social.errors %}
+            <div class="text-danger small mt-1">
+              {% for error in form.razon_social.errors %}
+              <div>{{ error }}</div>
+              {% endfor %}
             </div>
-        </div>
+            {% endif %}
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="{{ form.rfc.id_for_label }}"
+              >{{ form.rfc.label }}:</label
+            >
+            {{ form.rfc }} {% if form.rfc.errors %}
+            <div class="text-danger small mt-1">
+              {% for error in form.rfc.errors %}
+              <div>{{ error }}</div>
+              {% endfor %}
+            </div>
+            {% endif %}
+          </div>
+
+          <div class="mb-3">
+            <label
+              class="form-label"
+              for="{{ form.regimen_fiscal.id_for_label }}"
+              >{{ form.regimen_fiscal.label }}:</label
+            >
+            {{ form.regimen_fiscal }} {% if form.regimen_fiscal.errors %}
+            <div class="text-danger small mt-1">
+              {% for error in form.regimen_fiscal.errors %}
+              <div>{{ error }}</div>
+              {% endfor %}
+            </div>
+            {% endif %}
+          </div>
+
+          <div class="d-flex gap-2">
+            <a href="{% url 'vehiculos:titulo' %}" class="btn btn-secondary">
+              <ion-icon name="arrow-back-outline"></ion-icon> Atrás
+            </a>
+            <button type="submit" class="btn btn-primary flex-grow-1">
+              SIGUIENTE <ion-icon name="arrow-forward-outline"></ion-icon>
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
+  </div>
 </div>
 {% endblock %}

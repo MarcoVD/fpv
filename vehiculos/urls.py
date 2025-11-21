@@ -14,6 +14,7 @@ urlpatterns = [
     path('representante-legal/', views.representante_legal_view, name='representante_legal'),
     path('vehiculo/', views.vehiculo_view, name='vehiculo'),
     path('documentos-fisica/', views.documentos_fisica_view, name='documentos_fisica'),
+    path('documentos-moral/', views.documentos_moral_view, name='documentos_moral'),
     path('documentos-vehiculo/', views.documentos_vehiculo_view, name='documentos_vehiculo'),
     path('finalizar/', views.finalizar_view, name='finalizar'),
     

@@ -6,33 +6,38 @@ from django.core.exceptions import ValidationError
 
 User = get_user_model()
 
+
 class RegistrationForm(forms.Form):
     # Campo para el correo electrónico
     email = forms.EmailField(
         label='Correo Electrónico',
         max_length=254,
-        widget=forms.EmailInput(attrs={'class': 'form-control', 'required': 'required'})
+        widget=forms.EmailInput(
+            attrs={'class': 'form-control', 'required': 'required'})
     )
-    
+
     # Campo para la primera contraseña
     password = forms.CharField(
         label='Contraseña',
-        strip=False, # Importante para preservar el espaciado si el usuario lo pone (aunque se recomienda validarlo)
-        widget=forms.PasswordInput(attrs={'class': 'form-control', 'required': 'required'})
+        # Importante para preservar el espaciado si el usuario lo pone (aunque se recomienda validarlo)
+        strip=False,
+        widget=forms.PasswordInput(
+            attrs={'class': 'form-control', 'required': 'required'})
     )
-    
+
     # Campo para confirmar la contraseña
     password2 = forms.CharField(
         label='Confirmar Contraseña',
         strip=False,
-        widget=forms.PasswordInput(attrs={'class': 'form-control', 'required': 'required'})
+        widget=forms.PasswordInput(
+            attrs={'class': 'form-control', 'required': 'required'})
     )
-    
+
     # Checkbox para aceptar términos/aviso de privacidad
     # El widget se manejará mejor en la plantilla, pero el campo es necesario para la validación
     acepto_terminos = forms.BooleanField(
         label='He leído y acepto el aviso de privacidad',
-        required=True, # Debe estar marcado para que el formulario sea válido
+        required=True,  # Debe estar marcado para que el formulario sea válido
         widget=forms.CheckboxInput(attrs={'class': 'form-check-input'})
     )
 
@@ -41,16 +46,17 @@ class RegistrationForm(forms.Form):
         Valida que el correo electrónico no esté ya registrado.
         """
         email = self.cleaned_data.get('email')
-        
+
         # 1. Asegurarse de que el correo está en minúsculas para una comparación uniforme
         if email:
-            email = email.lower() 
+            email = email.lower()
 
         # 2. Consultar la base de datos para ver si ya existe un usuario con ese email
         if User.objects.filter(email=email).exists():
             # Si el usuario ya existe, lanza un error de validación
-            raise forms.ValidationError("Este correo electrónico ya está registrado.")
-        
+            raise forms.ValidationError(
+                "Este correo electrónico ya está registrado.")
+
         # 3. Retornar el valor "limpiado" y potencialmente modificado (en este caso, a minúsculas)
         return email
 
@@ -67,17 +73,14 @@ class RegistrationForm(forms.Form):
         # 1. Validar que las contraseñas coincidan
         if password and password2 and password != password2:
             self.add_error('password2', 'Las contraseñas no coinciden.')
-        
+
         # 2. Validar que la contraseña cumpla con los requisitos
         if password:
             try:
                 # Usa el validador de contraseñas de Django
-                validate_password(password) 
+                validate_password(password)
             except ValidationError as e:
                 # Añade los errores del validador al campo 'password'
-                self.add_error('password', e) 
+                self.add_error('password', e)
 
         return self.cleaned_data
-    
-    
-

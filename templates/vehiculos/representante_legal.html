@@ -18,57 +18,111 @@
                     
                     <div class="row">
                         <div class="col-md-12 mb-3">
-                            <label class="form-label" for="nombre">Nombre(s):</label>
-                            <input type="text" class="form-control" id="nombre" name="nombre" required>
+                            <label class="form-label" for="{{ form.nombre.id_for_label }}">{{ form.nombre.label }}:</label>
+                            {{ form.nombre }}
+                            {% if form.nombre.errors %}
+                            <div class="text-danger small mt-1">
+                              {% for error in form.nombre.errors %}
+                              <div>{{ error }}</div>
+                              {% endfor %}
+                            </div>
+                            {% endif %}
                         </div>
                         
                         <div class="col-md-6 mb-3">
-                            <label class="form-label" for="primer_apellido">Primer Apellido:</label>
-                            <input type="text" class="form-control" id="primer_apellido" 
-                                   name="primer_apellido" required>
+                            <label class="form-label" for="{{ form.primer_apellido.id_for_label }}">{{ form.primer_apellido.label }}:</label>
+                            {{ form.primer_apellido }}
+                            {% if form.primer_apellido.errors %}
+                            <div class="text-danger small mt-1">
+                              {% for error in form.primer_apellido.errors %}
+                              <div>{{ error }}</div>
+                              {% endfor %}
+                            </div>
+                            {% endif %}
                         </div>
                         
                         <div class="col-md-6 mb-3">
-                            <label class="form-label" for="segundo_apellido">Segundo Apellido:</label>
-                            <input type="text" class="form-control" id="segundo_apellido" 
-                                   name="segundo_apellido">
+                            <label class="form-label" for="{{ form.segundo_apellido.id_for_label }}">{{ form.segundo_apellido.label }}:</label>
+                            {{ form.segundo_apellido }}
+                            {% if form.segundo_apellido.errors %}
+                            <div class="text-danger small mt-1">
+                              {% for error in form.segundo_apellido.errors %}
+                              <div>{{ error }}</div>
+                              {% endfor %}
+                            </div>
+                            {% endif %}
                         </div>
                         
                         <div class="col-md-6 mb-3">
-                            <label class="form-label" for="rfc">RFC:</label>
-                            <input type="text" class="form-control" id="rfc" name="rfc" 
-                                   maxlength="13" required>
+                            <label class="form-label" for="{{ form.rfc.id_for_label }}">{{ form.rfc.label }}:</label>
+                            {{ form.rfc }}
+                            {% if form.rfc.errors %}
+                            <div class="text-danger small mt-1">
+                              {% for error in form.rfc.errors %}
+                              <div>{{ error }}</div>
+                              {% endfor %}
+                            </div>
+                            {% endif %}
                         </div>
                         
                         <div class="col-md-6 mb-3">
-                            <label class="form-label" for="regimen_fiscal">Régimen Fiscal:</label>
-                            <input type="text" class="form-control" id="regimen_fiscal" 
-                                   name="regimen_fiscal" required>
+                            <label class="form-label" for="{{ form.regimen_fiscal.id_for_label }}">{{ form.regimen_fiscal.label }}:</label>
+                            {{ form.regimen_fiscal }}
+                            {% if form.regimen_fiscal.errors %}
+                            <div class="text-danger small mt-1">
+                              {% for error in form.regimen_fiscal.errors %}
+                              <div>{{ error }}</div>
+                              {% endfor %}
+                            </div>
+                            {% endif %}
                         </div>
                         
                         <div class="col-md-6 mb-3">
-                            <label class="form-label" for="sexo">Sexo:</label>
-                            <select class="form-select" id="sexo" name="sexo" required>
-                                <option value="">-- Seleccione --</option>
-                                <option value="M">Mujer</option>
-                                <option value="H">Hombre</option>
-                            </select>
+                            <label class="form-label" for="{{ form.sexo.id_for_label }}">{{ form.sexo.label }}:</label>
+                            {{ form.sexo }}
+                            {% if form.sexo.errors %}
+                            <div class="text-danger small mt-1">
+                              {% for error in form.sexo.errors %}
+                              <div>{{ error }}</div>
+                              {% endfor %}
+                            </div>
+                            {% endif %}
                         </div>
                         
                         <div class="col-md-6 mb-3">
-                            <label class="form-label" for="fecha_nacimiento">Fecha de Nacimiento:</label>
-                            <input type="date" class="form-control" id="fecha_nacimiento" 
-                                   name="fecha_nacimiento" required>
+                            <label class="form-label" for="{{ form.fecha_nacimiento.id_for_label }}">{{ form.fecha_nacimiento.label }}:</label>
+                            {{ form.fecha_nacimiento }}
+                            {% if form.fecha_nacimiento.errors %}
+                            <div class="text-danger small mt-1">
+                              {% for error in form.fecha_nacimiento.errors %}
+                              <div>{{ error }}</div>
+                              {% endfor %}
+                            </div>
+                            {% endif %}
                         </div>
                         
                         <div class="col-md-6 mb-3">
-                            <label class="form-label" for="telefono">Teléfono fijo:</label>
-                            <input type="tel" class="form-control" id="telefono" name="telefono">
+                            <label class="form-label" for="{{ form.telefono_fijo.id_for_label }}">{{ form.telefono_fijo.label }}:</label>
+                            {{ form.telefono_fijo }}
+                            {% if form.telefono_fijo.errors %}
+                            <div class="text-danger small mt-1">
+                              {% for error in form.telefono_fijo.errors %}
+                              <div>{{ error }}</div>
+                              {% endfor %}
+                            </div>
+                            {% endif %}
                         </div>
                         
                         <div class="col-md-6 mb-3">
-                            <label class="form-label" for="movil">Teléfono móvil:</label>
-                            <input type="tel" class="form-control" id="movil" name="movil" required>
+                            <label class="form-label" for="{{ form.telefono_movil.id_for_label }}">{{ form.telefono_movil.label }}:</label>
+                            {{ form.telefono_movil }}
+                            {% if form.telefono_movil.errors %}
+                            <div class="text-danger small mt-1">
+                              {% for error in form.telefono_movil.errors %}
+                              <div>{{ error }}</div>
+                              {% endfor %}
+                            </div>
+                            {% endif %}
                         </div>
                     </div>
                     
